@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .customTranslateX {
+    transform: translateX(-14.2rem);
+  }
+
+  .asideMenuItem.active + .customTranslateX {
+    transform: translateX(0);
+    background-color: #ffdf6b;
+  }
+
+  .asideMenuItem:not(.active):hover + .customTranslateX {
+    transform: translateX(0);
+  }
+
+  .subMenuItem.active {
+    background-color: #ffdf6b;
+  }
+
+  .contentLink:hover + .contentCustomTranslateX {
+    transform: translateX(-4rem);
+  }
+
+  .contentCustomTranslateX {
+    transform: translateX(-4.5rem);
+  }
+}
