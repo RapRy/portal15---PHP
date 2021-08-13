@@ -11,6 +11,21 @@
     class SubMenu{
         public $categories = ["PHTML5" => 14];
 
+        function getSubId($sql, $sub){
+            $sanitizeSub = filter_var($sub, FILTER_SANITIZE_SPECIAL_CHARS);
+            $querySub = "SELECT id FROM cms.sub_categories WHERE sub_category = ?";
+            $stmtSub = $sql->stmt_init();
+            $stmtSub->prepare($querySub);
+            $stmtSub->bind_param("s", $sanitizeSub);
+            $stmtSub->execute();
+            $stmtSub->store_result();
+            $stmtSub->num_rows();
+            $stmtSub->bind_result($id);
+            $stmtSub->fetch();
+            $stmtSub->close();
+            return $id;
+        }
+
         function getSubCategories($sql, $cat) {
 
             $querySub = "SELECT id, category_id, sub_category FROM cms.sub_categories WHERE category_id = ?";
@@ -38,10 +53,11 @@
         public $categories = ["PHTML5" => 14];
 
         function getContents($sql, $catId, $subId){
+            $sanitizeSub = filter_var($subId, FILTER_SANITIZE_NUMBER_INT);
             $queryContent = "SELECT id, title, content_file_name, icon_file_name, description FROM cms.portal_content WHERE category_id = ? and sub_category_id = ?";
             $stmtContent = $sql->stmt_init();
             $stmtContent->prepare($queryContent);
-            $stmtContent->bind_param("ii", $this->categories[$catId], $subId);
+            $stmtContent->bind_param("ii", $this->categories[$catId], $sanitizeSub);
             $stmtContent->execute();
             $stmtContent->store_result();
             $stmtContent->num_rows();
@@ -50,12 +66,13 @@
 
             $data = [];
 
-            
+            echo $id;
+
             while($stmtContent->fetch()){
                 $querySub = "SELECT id, sub_category FROM cms.sub_categories WHERE id = ?";
                 $stmtSub = $sql->stmt_init();
                 $stmtSub->prepare($querySub);
-                $stmtSub->bind_param("i", $subId);
+                $stmtSub->bind_param("i", $sanitizeSub);
                 $stmtSub->execute();
                 $stmtSub->store_result();
                 $stmtSub->num_rows();

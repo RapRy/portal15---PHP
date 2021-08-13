@@ -12,17 +12,43 @@
     <title>SITE NAME</title>
 </head>
 <body class="bg-neutralMain relative font-poppins">
-    <?php include('./components/asideMenu.php'); ?>
+    <div class="mx-auto container">
+        <?php include('./components/asideMenu.php'); ?>
 
-    <main class="container py-5 px-2.5">
-        <header>
-            <div class="w-14 h-14 inline-block relative z-50">
-                <svg id="menuBurg" class="w-14 cursor-pointer inline-block fill-current text-textColor1" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -7 24 24" width="56" height="56" preserveAspectRatio="xMinYMin" class="icon__icon"><path d="M1 0h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0 8h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0-4h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2z"></path></svg>
-            </div>
-            <h1 class="text-textColor1 inline-block text-3xl font-bold uppercase transform translate-y-1.5 translate-x-2.5">Site name or logo</h1>
-        </header> 
-        <?php include('./components/mobileSubMenu.php'); ?>
-        <?php include('./components/home.php'); ?>
-    </main>
+        <main class="container py-5 px-2.5">
+            <header>
+                <div class="w-14 h-14 inline-block relative z-0">
+                    <svg id="menuBurg" class="w-14 cursor-pointer inline-block fill-current text-textColor1" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -7 24 24" width="56" height="56" preserveAspectRatio="xMinYMin" class="icon__icon"><path d="M1 0h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0 8h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0-4h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2z"></path></svg>
+                </div>
+                <h1 class="text-textColor1 inline-block text-3xl font-bold uppercase transform translate-y-1.5 translate-x-2.5">Site name or logo</h1>
+            </header> 
+
+            <!-- submenu start -->
+            <?php
+                $subMenu = new SubMenu();
+
+                $subcategories = $subMenu->getSubCategories($mysqli, $actives["catActive"]);
+        
+                $activeSub = str_replace("-", " ", $actives['subActive']);
+            ?>
+            <?php include('./components/mobileSubMenu.php'); ?>
+            <?php include('./components/desktopSubMenu.php'); ?>
+            <!-- submenu end -->
+
+            <?php
+                if(isset($_GET['sub'])){
+                    if($_GET['sub'] === "Home") include('./components/home.php'); 
+                    // temporary page for new releases & top charts
+                    if(str_replace("-", " ", $_GET['sub']) === "Top Charts" || str_replace("-", " ", $_GET['sub']) === "New Releases"){
+                        include('./components/comingsoon.php');
+                    }else{
+                        include('./components/contentList.php');
+                    }
+                }else{
+                    include('./components/home.php');
+                }
+            ?>
+        </main>
+    </div>
 </body>
 </html>

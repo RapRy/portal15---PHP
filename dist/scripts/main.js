@@ -3,7 +3,9 @@ $(() => {
     constructor() {
       this.toggleSideMenu = false;
       this.toggleMobileSubMenu = false;
+      this.toggleDesktopSubCategories = false;
       this.heightMobileSubMenu = 0;
+      this.heightDesktopSubCategories = 0;
       this.asideNavContainer = $("#asideNavContainer");
       this.asideNav = $("#asideNav");
       this.asideNavBackdrop = $("#asideNavBackdrop");
@@ -11,7 +13,26 @@ $(() => {
       this.mobileSubMenu = $("#mobileSubMenu");
       this.activeMobileSubMenuContainer = $("#activeMobileSubMenuContainer");
       this.subMenuListContainer = $("#subMenuListContainer");
+
+      this.categoriesBtn = $("#categoriesBtn");
+      this.desktopSubCategories = $("#desktopSubCategories");
     }
+
+    toggleSubCategories = (toggle) => {
+      this.toggleDesktopSubCategories = toggle;
+      this.desktopSubCategories.find("ul").animate(
+        {
+          opacity: toggle ? 1 : 0,
+        },
+        { easing: "swing" }
+      );
+      this.desktopSubCategories.animate(
+        {
+          height: toggle ? this.heightDesktopSubCategories : 0,
+        },
+        { easing: "swing" }
+      );
+    };
 
     toggleAsideMenu = (toggle) => {
       this.toggleSideMenu = toggle;
@@ -24,7 +45,6 @@ $(() => {
           easing: "swing",
         }
       );
-      console.log(this.asideNav);
       this.asideNav.animate(
         { left: toggle ? "0%" : "-100%" },
         {
@@ -48,10 +68,15 @@ $(() => {
     };
 
     onloadMobileSubMenu = () => {
-      this.heightMobileSubMenu = $("#mobileSubMenu").innerHeight();
+      this.heightMobileSubMenu = this.mobileSubMenu.innerHeight();
       this.mobileSubMenu.height(
         this.activeMobileSubMenuContainer.innerHeight()
       );
+    };
+
+    onloadDesktopSubCategories = () => {
+      this.heightDesktopSubCategories = this.desktopSubCategories.innerHeight();
+      this.desktopSubCategories.innerHeight(0);
     };
   }
 
@@ -74,5 +99,12 @@ $(() => {
     );
   });
 
-  $(window).on("load", () => navigation.onloadMobileSubMenu());
+  navigation.categoriesBtn.on("click", () => {
+    navigation.toggleSubCategories(!navigation.toggleDesktopSubCategories);
+  });
+
+  $(window).on("load", () => {
+    navigation.onloadMobileSubMenu();
+    navigation.onloadDesktopSubCategories();
+  });
 });

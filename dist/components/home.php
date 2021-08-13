@@ -10,10 +10,16 @@
         ["header" => "Popular Games", "contents" => $popularGames],
         ["header" => "Upcoming Games", "contents" => $upcomingGames]
     ];
+
+    if(empty($newGames) && empty($popularGames) && empty($upcomingGames)){
+        include('./components/comingsoon.php');
+        return;
+    }
 ?>
 <div class="py-4">
     <?php
         foreach($collections as $collection):
+            if(empty($collection["contents"])) break;
     ?>
             <div class="pt-8">
                 <div class="flex flex-row flex-wrap justify-between items-end mb-5">
