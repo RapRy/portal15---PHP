@@ -12,12 +12,13 @@
     <title>SITE NAME</title>
 </head>
 <body class="bg-neutralMain relative font-poppins">
-    <div class="mx-auto container">
+    <!-- <div class="mx-auto block lg:mx-0 lg:grid lg:grid-cols-custom lg:gap-x-10"> -->
+    <div class="mx-auto block lg:mx-0 lg:flex lg:flex-row lg:flex-nowrap lg:gap-x-10">
         <?php include('./components/asideMenu.php'); ?>
 
-        <main class="container py-5 px-2.5">
+        <main class="py-5 px-4 lg:px-0 lg:pr-10">
             <header>
-                <div class="w-14 h-14 inline-block relative z-0">
+                <div class="w-14 h-14 inline-block relative z-0 lg:hidden">
                     <svg id="menuBurg" class="w-14 cursor-pointer inline-block fill-current text-textColor1" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -7 24 24" width="56" height="56" preserveAspectRatio="xMinYMin" class="icon__icon"><path d="M1 0h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0 8h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0-4h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2z"></path></svg>
                 </div>
                 <h1 class="text-textColor1 inline-block text-3xl font-bold uppercase transform translate-y-1.5 translate-x-2.5">Site name or logo</h1>

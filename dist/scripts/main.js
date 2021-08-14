@@ -68,14 +68,19 @@ $(() => {
     };
 
     onloadMobileSubMenu = () => {
-      this.heightMobileSubMenu = this.mobileSubMenu.innerHeight();
+      this.heightMobileSubMenu =
+        this.activeMobileSubMenuContainer.innerHeight() +
+        this.subMenuListContainer.innerHeight() +
+        4;
       this.mobileSubMenu.height(
         this.activeMobileSubMenuContainer.innerHeight()
       );
     };
 
     onloadDesktopSubCategories = () => {
-      this.heightDesktopSubCategories = this.desktopSubCategories.innerHeight();
+      this.heightDesktopSubCategories = this.desktopSubCategories
+        .find("ul")
+        .innerHeight();
       this.desktopSubCategories.innerHeight(0);
     };
   }
@@ -103,8 +108,14 @@ $(() => {
     navigation.toggleSubCategories(!navigation.toggleDesktopSubCategories);
   });
 
-  $(window).on("load", () => {
-    navigation.onloadMobileSubMenu();
-    navigation.onloadDesktopSubCategories();
-  });
+  $(window)
+    .on("load", () => {
+      navigation.onloadMobileSubMenu();
+      navigation.onloadDesktopSubCategories();
+    })
+    .on("resize", () => {
+      navigation.onloadDesktopSubCategories();
+      navigation.onloadMobileSubMenu();
+      navigation.asideNav.css({ left: "0%" });
+    });
 });

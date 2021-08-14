@@ -23,10 +23,10 @@
   }
 
   .contentLink:hover + .contentCustomTranslateX {
-    transform: translateX(-4rem);
+    transform: translateX(-5.8rem);
   }
 
   .contentCustomTranslateX {
-    transform: translateX(-4.5rem);
+    transform: translateX(-14.5rem);
   }
 }

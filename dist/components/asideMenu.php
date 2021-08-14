@@ -1,5 +1,5 @@
-<aside id="asideNavContainer" class="absolute left-0 top-0 z-10 w-full hidden">
-    <div id="asideNav" class="shadow-shadowRight w-64 bg-neutralLight h-screen pt-24 px-5 relative top-0 -left-full z-10 overflow-x-hidden">
+<aside id="asideNavContainer" class="absolute left-0 top-0 z-10 w-full h-full lg:w-max lg:h-auto hidden lg:block lg:relative lg:flex-none">
+    <div id="asideNav" class="shadow-shadowRight w-64 bg-neutralLight min-h-full h-screen pt-24 px-5 relative top-0 -left-full z-10 overflow-x-hidden lg:left-0">
     <?php
         foreach($categories as $category):
     ?>
@@ -14,5 +14,5 @@
         endforeach;
     ?>
     </div>
-    <div id="asideNavBackdrop" class="bg-textColor1 opacity-0 w-full h-screen absolute letf-0 top-0 z-0"></div>
+    <div id="asideNavBackdrop" class="bg-textColor1 opacity-0 w-full min-h-full h-screen absolute letf-0 top-0 z-0 block lg:hidden"></div>
 </aside>

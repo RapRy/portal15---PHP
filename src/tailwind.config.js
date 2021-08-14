@@ -22,6 +22,23 @@ module.exports = {
         textColor1: "#1F1F1F",
         textColor2: "#575757",
       },
+      gridTemplateColumns: {
+        custom: "auto 1fr",
+      },
+      animation: {
+        pushRightDesktop: "pushRightDesktop 500ms ease-in-out forwards",
+        pushUpMobile: "pushUpMobile 500ms ease-in-out forwards",
+      },
+      keyframes: {
+        pushRightDesktop: {
+          "0%": { transform: "translateX(50px)", opacity: 0 },
+          "100%": { transform: "translateX(0px)", opacity: 1 },
+        },
+        pushUpMobile: {
+          "0%": { transform: "translateY(50px)", opacity: 0 },
+          "100%": { transform: "translateY(0px)", opacity: 1 },
+        },
+      },
     },
   },
   variants: {

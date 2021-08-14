@@ -10,26 +10,26 @@
         return;
     }
 ?>
-<div class="py-4">
+<div class="py-4 block lg:grid lg:grid-cols-3 lg:gap-x-4">
     <?php
         $lengthCollection = count($collection) - 1;
         foreach($collection as $ind=>$content):
     ?>
-            <div class="bg-neutralLight rounded-xl py-6 shadow-cardShadow <?php echo $ind === $lengthCollection ? "" : "mb-4"; ?>">
+            <div class="bg-neutralLight rounded-xl py-6 shadow-cardShadow <?php echo $ind === $lengthCollection ? "" : "mb-4"; ?> animate-pushUpMobile lg:animate-pushRightDesktop">
                 <div class="relative px-6 overflow-x-hidden">
                     <!-- link -->
                     <a class="contentLink" href="#" alt="link">
-                        <div class="h-20 w-full flex flex-row flex-nowrap justify-start gap-4 items-center">
+                        <div class="h-20 w-full grid grid-cols-custom justify-start gap-4 items-center relative z-10">
                             <div class="w-28 h-20 rounded-2xl overflow-hidden">
                                 <img class="w-full transform -translate-y-4" src="<?php echo $content['icon']; ?>" alt="<?php echo $content['title']; ?>">
                             </div>
-                            <div class="flex-grow">
+                            <div class="overflow-x-hidden">
                                 <h4 class="font-bold text-lg text-textColor1 overflow-ellipsis overflow-x-hidden whitespace-nowrap"><?php echo $content['title']; ?></h4>
                                 <span class="font-medium text-sm text-textColor2"><?php echo $content['subcategory']; ?></span>
                             </div>
                         </div>
                     </a>
-                    <div class="absolute w-20 h-16 top-2 left-0 bg-secondaryMain rounded-xl contentCustomTranslateX transition-transform duration-200 delay-75 ease-in-out"></div>
+                    <div class="absolute z-0 w-60 h-16 top-2 left-0 bg-secondaryMain rounded-xl contentCustomTranslateX transition-transform duration-200 delay-75 ease-in-out"></div>
                 </div>
                 <div class="px-6 py-4">
                     <p class="text-xs text-textColor2 overflow-ellipsis overflow-x-hidden whitespace-nowrap"><?php echo $content['description']; ?></p>

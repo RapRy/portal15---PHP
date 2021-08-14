@@ -1,4 +1,4 @@
-<div id="mobileSubMenu" class="block lg:hidden relative bg-neutralDark mt-10 rounded-md overflow-y-hidden">
+<div id="mobileSubMenu" class="block h-0 lg:hidden relative bg-neutralDark mt-10 rounded-md overflow-y-hidden">
     <div id="activeMobileSubMenuContainer" class="p-4 border-b-4 border-neutralMain cursor-pointer">
         <span class="text-textColor1 text-base font-semibold"><?php echo isset($_GET['sub']) ? $activeSub : "Home" ?></span>
     </div>
