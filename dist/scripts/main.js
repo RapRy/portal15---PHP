@@ -16,6 +16,9 @@ $(() => {
 
       this.categoriesBtn = $("#categoriesBtn");
       this.desktopSubCategories = $("#desktopSubCategories");
+
+      this.modeToggle = $("#modeToggle");
+      this.mode = "light";
     }
 
     toggleSubCategories = (toggle) => {
@@ -106,6 +109,13 @@ $(() => {
 
   navigation.categoriesBtn.on("click", () => {
     navigation.toggleSubCategories(!navigation.toggleDesktopSubCategories);
+  });
+
+  navigation.modeToggle.on("click", (e) => {
+    $(e.currentTarget).animate(
+      { left: "2rem", opacity: 1 },
+      { easing: "swing" }
+    );
   });
 
   $(window)

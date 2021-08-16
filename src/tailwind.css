@@ -9,6 +9,20 @@
     transform: translateX(-14.2rem);
   }
 
+  .asideMenuItem.active > svg,
+  .asideMenuItem.active:hover > svg,
+  .asideMenuItem:hover > svg {
+    fill: #1f1f1f;
+    transition: all 275ms ease-in-out;
+  }
+
+  .asideMenuItem.active > span,
+  .asideMenuItem.active:hover > span,
+  .asideMenuItem:hover > span {
+    color: #1f1f1f;
+    transition: all 275ms ease-in-out;
+  }
+
   .asideMenuItem.active + .customTranslateX {
     transform: translateX(0);
     background-color: #ffdf6b;
@@ -20,6 +34,7 @@
 
   .subMenuItem.active {
     background-color: #ffdf6b;
+    color: #1f1f1f;
   }
 
   .contentLink:hover + .contentCustomTranslateX {

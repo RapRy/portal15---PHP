@@ -9,9 +9,9 @@
         </svg>
     </div>
     <div class="text-center lg:text-left">
-        <h2 class="text-textColor1 text-4xl font-bold mb-4">Coming <span class="text-primaryMain font-black">Soon!</span></h2>
-        <p class="text-textColor1 mb-10 text-sm">this page is under construction</p>
-        <a href="<?php echo $_SERVER['PHP_SELF']; ?>" alt="go home" class="inline-block px-4 py-2 bg-neutralDark rounded-md text-textColor1 font-bold text-sm hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75">
+        <h2 class="text-textColor1 dark:text-neutralLight text-4xl font-bold mb-4">Coming <span class="text-primaryMain font-black">Soon!</span></h2>
+        <p class="text-textColor1 dark:text-neutralLight mb-10 text-sm">this page is under construction</p>
+        <a href="<?php echo $_SERVER['PHP_SELF']; ?>" alt="go home" class="inline-block px-4 py-2 bg-neutralDark dark:bg-textColor1 rounded-md text-textColor1 dark:text-neutralLight dark:hover:text-textColor1 font-bold text-sm hover:bg-primaryMain dark:hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75">
             back to home
         </a>
     </div>

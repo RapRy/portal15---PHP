@@ -1,6 +1,6 @@
 module.exports = {
   purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     fontFamily: {
       poppins: ["Poppins", "sans-serif"],
@@ -21,6 +21,7 @@ module.exports = {
         neutralDark: "#DFDFDF",
         textColor1: "#1F1F1F",
         textColor2: "#575757",
+        textColor3: "#323131",
       },
       gridTemplateColumns: {
         custom: "auto 1fr",
