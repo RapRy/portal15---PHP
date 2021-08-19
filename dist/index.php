@@ -33,9 +33,8 @@
 
             <!-- submenu start -->
             <?php
-                $subMenu = new SubMenu();
 
-                $subcategories = $subMenu->getSubCategories($mysqli, $actives["catActive"]);
+                $subcategories = getSubCategories($baseUrl);
         
                 $activeSub = str_replace("-", " ", $actives['subActive']);
             ?>
@@ -44,17 +43,18 @@
             <!-- submenu end -->
 
             <?php
-                if(isset($_GET['sub'])){
-                    if($_GET['sub'] === "Home") include('./components/home.php'); 
-                    // temporary page for new releases & top charts
-                    if(str_replace("-", " ", $_GET['sub']) === "Top Charts" || str_replace("-", " ", $_GET['sub']) === "New Releases"){
-                        include('./components/comingsoon.php');
-                    }else{
-                        include('./components/contentList.php');
-                    }
-                }else{
-                    include('./components/home.php');
-                }
+                include('./components/home.php');
+                // if(isset($_GET['sub'])){
+                //     if($_GET['sub'] === "Home") include('./components/home.php'); 
+                //     // temporary page for new releases & top charts
+                //     if(str_replace("-", " ", $_GET['sub']) === "Top Charts" || str_replace("-", " ", $_GET['sub']) === "New Releases"){
+                //         include('./components/comingsoon.php');
+                //     }else{
+                //         include('./components/contentList.php');
+                //     }
+                // }else{
+                //     include('./components/home.php');
+                // }
             ?>
         </main>
     </div>

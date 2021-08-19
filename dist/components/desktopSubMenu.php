@@ -14,7 +14,7 @@
                 ?>
                         <li class="pt-2 mx-1">
                             <a class="subMenuItem text-textColor1 dark:text-neutralLight dark:hover:text-textColor1 text-sm font-bold py-2 px-5 w-full inline-block rounded-md hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75 <?php echo $activeSub === $subcategory['sub_category'] ? "bg-primaryLight active" : "" ?>" href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}&sub={$subcategory['sub_category']}"; ?>" alt="<?php echo $subcategory['sub_category']; ?>">
-                                <?php echo $subcategory['sub_category']; ?>
+                                <?php echo $subcategory['name']; ?>
                             </a>
                         </li>
                 <?php
