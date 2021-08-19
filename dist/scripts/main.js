@@ -21,6 +21,37 @@ $(() => {
       this.mode = "light";
     }
 
+    checkTheme = () => {
+      if (JSON.parse(localStorage.getItem("theme")) === true) {
+        this.modeToggle.find("button").animate(
+          { left: "1.375rem" },
+          {
+            duration: 200,
+            easing: "swing",
+            done: () => {
+              this.mode = "dark";
+              $("html").addClass("dark");
+              this.modeToggle
+                .find("button")
+                .html(
+                  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -1.5 24 24" width="15" height="15" preserveAspectRatio="xMinYMin" class="icon__icon ml-1.5 fill-current text-neutralLight"><path d="M10 15.565a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-15a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm-9-7h2a1 1 0 1 1 0 2H1a1 1 0 0 1 0-2zm16 0h2a1 1 0 0 1 0 2h-2a1 1 0 0 1 0-2zm.071-6.071a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0zM5.757 14.808a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0zM4.343 3.494l1.414 1.414a1 1 0 0 1-1.414 1.414L2.93 4.908a1 1 0 0 1 1.414-1.414zm11.314 11.314l1.414 1.414a1 1 0 0 1-1.414 1.414l-1.414-1.414a1 1 0 1 1 1.414-1.414z"></path></svg>`
+                );
+            },
+          }
+        );
+      }
+    };
+
+    setTheme = () => {
+      if (localStorage.getItem("theme") === null) {
+        localStorage.setItem("theme", true);
+      } else {
+        const theme = JSON.parse(localStorage.getItem("theme"));
+
+        localStorage.setItem("theme", !theme);
+      }
+    };
+
     toggleSubCategories = (toggle) => {
       this.toggleDesktopSubCategories = toggle;
       this.desktopSubCategories.find("ul").animate(
@@ -112,9 +143,31 @@ $(() => {
   });
 
   navigation.modeToggle.on("click", (e) => {
-    $(e.currentTarget).animate(
-      { left: "2rem", opacity: 1 },
-      { easing: "swing" }
+    const button = $(e.currentTarget).find("button");
+
+    button.animate(
+      { left: navigation.mode === "light" ? "1.375rem" : "0.125rem" },
+      {
+        duration: 200,
+        easing: "swing",
+        done: function () {
+          if (navigation.mode === "light") {
+            navigation.mode = "dark";
+            $("html").addClass("dark");
+            $(this).html(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -1.5 24 24" width="15" height="15" preserveAspectRatio="xMinYMin" class="icon__icon ml-1.5 fill-current text-neutralLight"><path d="M10 15.565a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-15a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm-9-7h2a1 1 0 1 1 0 2H1a1 1 0 0 1 0-2zm16 0h2a1 1 0 0 1 0 2h-2a1 1 0 0 1 0-2zm.071-6.071a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0zM5.757 14.808a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0zM4.343 3.494l1.414 1.414a1 1 0 0 1-1.414 1.414L2.93 4.908a1 1 0 0 1 1.414-1.414zm11.314 11.314l1.414 1.414a1 1 0 0 1-1.414 1.414l-1.414-1.414a1 1 0 1 1 1.414-1.414z"></path></svg>`
+            );
+            navigation.setTheme();
+          } else {
+            navigation.mode = "light";
+            $("html").removeClass("dark");
+            $(this).html(
+              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -2 24 24" width="15" height="15" preserveAspectRatio="xMinYMin" class="icon__icon ml-1 fill-current text-textColor1"><path d="M12.253.335A10.086 10.086 0 0 0 8.768 8c0 4.632 3.068 8.528 7.232 9.665A9.555 9.555 0 0 1 9.742 20C4.362 20 0 15.523 0 10S4.362 0 9.742 0c.868 0 1.71.117 2.511.335z"></path></svg>`
+            );
+            navigation.setTheme();
+          }
+        },
+      }
     );
   });
 
@@ -122,6 +175,7 @@ $(() => {
     .on("load", () => {
       navigation.onloadMobileSubMenu();
       navigation.onloadDesktopSubCategories();
+      navigation.checkTheme();
     })
     .on("resize", () => {
       navigation.onloadDesktopSubCategories();
