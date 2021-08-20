@@ -19,10 +19,26 @@
 
         $data = json_decode($output, true);
 
-
         curl_close($curl);
         if($data['code'] === 200){
-            return $data['data'];
+            $categoryNames = [];
+            $newCategoryOrder = [];
+
+            foreach($data['data'] as $d){ 
+                array_push($categoryNames, $d['name']);
+            }
+
+            sort($categoryNames);
+
+            foreach($categoryNames as $name){
+                foreach($data['data'] as $d){
+                    if($name === $d['name']) array_push($newCategoryOrder, $d);
+                }
+            }
+
+            // return $data['data'];
+
+            return $newCategoryOrder;
         }
     }
 

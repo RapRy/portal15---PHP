@@ -1,13 +1,30 @@
 <div id="mobileSubMenu" class="block h-0 lg:hidden relative bg-neutralDark dark:bg-textColor1 mt-10 rounded-md overflow-y-hidden">
     <div id="activeMobileSubMenuContainer" class="p-4 border-b-4 border-neutralMain dark:border-textColor2 cursor-pointer">
-        <span class="text-textColor1 dark:text-neutralLight text-base font-semibold"><?php echo isset($_GET['sub']) ? $activeSub : "Home" ?></span>
+        <span class="text-textColor1 dark:text-neutralLight text-base font-semibold">
+            <?php
+                if(isset($_GET['sub'])){
+                    if(preg_match('~[0-9]+~', $_GET['sub'])){
+                        $active = "";
+                        foreach($subcategories as $sub){
+                            if($_GET['sub'] === $sub['id']) $active = $sub['name'];
+                        }
+
+                        echo $active;
+                    }else{
+                        echo $activeSub;
+                    }
+                }else{
+                    echo "Home";
+                }
+            ?>
+        </span>
     </div>
     <div id="subMenuListContainer" class="p-4">
         <div class="pb-2">
-            <a href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}"; ?>" alt="Home" class="subMenuItem text-textColor2 dark:text-neutralMain text-base font-medium py-2 px-5 w-full inline-block rounded-md hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75 <?php echo ($activeSub === "Home" || $activeSub === "Newest" || $activeSub === "Most Played") ? "bg-primaryLight active" : "dark:hover:text-textColor2" ?>">Home</a>
+            <a href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}"; ?>" alt="Home" class="subMenuItem text-textColor2 dark:text-neutralMain text-base font-medium py-2 px-5 w-full inline-block rounded-md hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75 <?php echo ($activeSub === "Home") ? "bg-primaryLight active" : "dark:hover:text-textColor2" ?>">Home</a>
         </div>
         <div class="pb-2">
-            <a href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}&sub=Newest"; ?>" alt="Newest" class="subMenuItem text-textColor2 dark:text-neutralMain dark:hover:text-textColor2 text-base font-medium py-2 px-5 w-full inline-block rounded-md hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75 <?php echo $activeSub === "Top Charts" ? "bg-primaryLight active" : "dark:hover:text-textColor2" ?>">Newest</a>
+            <a href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}&sub=Newest"; ?>" alt="Newest" class="subMenuItem text-textColor2 dark:text-neutralMain dark:hover:text-textColor2 text-base font-medium py-2 px-5 w-full inline-block rounded-md hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75 <?php echo $activeSub === "Newest" ? "bg-primaryLight active" : "dark:hover:text-textColor2" ?>">Newest</a>
         </div>
         <div class="pb-2">
             <a href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}&sub=Most-Played"; ?>" alt="Most Played" class="subMenuItem text-textColor2 dark:text-neutralMain dark:hover:text-textColor2 text-base font-medium py-2 px-5 w-full inline-block rounded-md hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75 <?php echo $activeSub === "Most Played" ? "bg-primaryLight active" : "dark:hover:text-textColor2" ?>">Most Played</a>
@@ -26,7 +43,7 @@
                 foreach($subcategories as $subcategory):
             ?>
                     <li class="pt-2">
-                        <a class="subMenuItem text-textColor1 dark:text-neutralLight text-base font-bold py-2 px-5 w-full inline-block rounded-md hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75 <?php echo $activeSub === $subcategory['name'] ? "bg-primaryLight active" : "dark:hover:text-textColor1" ?>" href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}&sub={$subcategory['id']}"; ?>" alt="<?php echo $subcategory['name']; ?>">
+                        <a class="subMenuItem text-textColor1 dark:text-neutralLight text-base font-bold py-2 px-5 w-full inline-block rounded-md hover:bg-primaryMain transition-colors duration-300 ease-in-out delay-75 <?php echo str_replace(" ", "-", $activeSub) === $subcategory['id'] ? "bg-primaryLight active" : "dark:hover:text-textColor1" ?>" href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}&sub={$subcategory['id']}"; ?>" alt="<?php echo $subcategory['id']; ?>">
                             <?php echo $subcategory['name']; ?>
                         </a>
                     </li>

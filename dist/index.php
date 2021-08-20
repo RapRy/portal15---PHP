@@ -43,18 +43,18 @@
             <!-- submenu end -->
 
             <?php
-                include('./components/home.php');
-                // if(isset($_GET['sub'])){
-                //     if($_GET['sub'] === "Home") include('./components/home.php'); 
-                //     // temporary page for new releases & top charts
-                //     if(str_replace("-", " ", $_GET['sub']) === "Top Charts" || str_replace("-", " ", $_GET['sub']) === "New Releases"){
-                //         include('./components/comingsoon.php');
-                //     }else{
-                //         include('./components/contentList.php');
-                //     }
-                // }else{
-                //     include('./components/home.php');
-                // }
+                // include('./components/home.php');
+                if(isset($_GET['sub'])){
+                    if($_GET['sub'] === "Home") include('./components/home.php'); 
+                    // temporary page for new releases & top charts
+                    if(str_replace("-", " ", $_GET['sub']) === "Newest" || str_replace("-", " ", $_GET['sub']) === "Most Played"){
+                        include('./components/comingsoon.php');
+                    }else{
+                        include('./components/contentList.php');
+                    }
+                }else{
+                    include('./components/home.php');
+                }
             ?>
         </main>
     </div>
