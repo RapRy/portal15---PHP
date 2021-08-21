@@ -1,26 +1,5 @@
 <?php
-    $subcategory = new SubMenu();
-    $contents = new Contents();
-
-    $subId = 0;
-
-    // temporary content
-    switch($_GET['sub']){
-        case "New-Games":
-            $subId = 97;
-            break;
-        case "Popular-Games":
-            $subId = 100;
-            break;
-        case "Upcoming-Games":
-            $subId = 102;
-            break;
-        default:
-            $subId = $subcategory->getSubId($mysqli, $_GET['sub']);
-            break;
-    }
-    
-    $collection = $contents->getContents($mysqli, $actives["catActive"], $subId);
+    $collection = getContents($baseUrl, $_GET['sub'], $sid, "d");
 
     if(empty($collection)){
         include('./components/comingsoon.php');
@@ -48,11 +27,11 @@
                     <a class="contentLink" href="#" alt="link">
                         <div class="h-20 w-full grid grid-cols-custom justify-start gap-4 items-center relative z-10">
                             <div class="w-28 h-20 rounded-2xl overflow-hidden">
-                                <img class="w-full transform -translate-y-4" src="<?php echo $content['icon']; ?>" alt="<?php echo $content['title']; ?>">
+                                <img class="w-full transform -translate-y-4" src="<?php echo $content['thumbnailUrl100']; ?>" alt="<?php echo $content['title']; ?>">
                             </div>
                             <div class="overflow-x-hidden">
                                 <h4 class="font-bold text-lg text-textColor1 dark:text-neutralLight overflow-ellipsis overflow-x-hidden whitespace-nowrap"><?php echo $content['title']; ?></h4>
-                                <span class="font-medium text-sm text-textColor2 dark:text-neutralDark"><?php echo $content['subcategory']; ?></span>
+                                <p class="font-medium text-xs text-textColor2 dark:text-neutralDark overflow-ellipsis overflow-x-hidden whitespace-nowrap"><?php echo implode(" | ", $content['categories']); ?></p>
                             </div>
                         </div>
                     </a>

@@ -9,13 +9,20 @@
 <div class="py-4">
     <?php
         foreach($subcategories as $subcat):
-            $contents = getContents($baseUrl, $subcat['id'], $sid, null);
+            $contents = [];
+            if(!isset($_GET['sub']) || $_GET['sub'] === "Home"){
+                $contents = getContents($baseUrl, $subcat['id'], $sid, null);
+            }else if($_GET['sub'] === "Newest"){
+                $contents = getContents($baseUrl, $subcat['id'], $sid, "d");
+            }else if($_GET['sub'] === "Most-Played"){
+                $contents = getContents($baseUrl, $subcat['id'], $sid, "q");
+            }
             $replaceHeader = str_replace(" ", "-", $subcat["name"]);
     ?>
             <div class="pt-8">
                 <div class="flex flex-row flex-wrap justify-between items-end mb-5">
                     <h1 class="font-bold text-sm text-textColor1 dark:text-neutralLight"><?php echo $subcat["name"]; ?></h1>
-                    <a class="text-xs font-medium text-textColor1 dark:text-neutralLight hover:text-primaryMain dark:hover:text-primaryMain transition-colors duration-300 ease-in-out" href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}&sub={$replaceHeader}"; ?>" all="see more">see more (<?php echo count($contents); ?>)</a>
+                    <a class="text-xs font-medium text-textColor1 dark:text-neutralLight hover:text-primaryMain dark:hover:text-primaryMain transition-colors duration-300 ease-in-out" href="<?php echo "{$_SERVER['PHP_SELF']}?cat={$actives['catActive']}&sub={$subcat['id']}"; ?>" all="see more">see more (<?php echo count($contents); ?>)</a>
                 </div>
                 <div class="block lg:grid lg:grid-cols-3 lg:gap-x-4">
     <?php
@@ -32,7 +39,7 @@
                                                 </div>
                                                 <div class="overflow-x-hidden">
                                                     <h4 class="font-bold text-lg text-textColor1 dark:text-neutralLight overflow-ellipsis overflow-x-hidden whitespace-nowrap"><?php echo $content['title']; ?></h4>
-                                                    <span class="font-medium text-sm text-textColor2 dark:text-neutralDark"><?php echo $content['category']; ?></span>
+                                                    <p class="font-medium text-xs text-textColor2 dark:text-neutralDark overflow-ellipsis overflow-x-hidden whitespace-nowrap"><?php echo implode(" | ", $content['categories']); ?></p>
                                                 </div>
                                             </div>
                                         </a>

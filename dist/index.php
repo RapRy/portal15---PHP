@@ -45,15 +45,13 @@
             <?php
                 // include('./components/home.php');
                 if(isset($_GET['sub'])){
-                    if($_GET['sub'] === "Home") include('./components/home.php'); 
-                    // temporary page for new releases & top charts
-                    if(str_replace("-", " ", $_GET['sub']) === "Newest" || str_replace("-", " ", $_GET['sub']) === "Most Played"){
-                        include('./components/comingsoon.php');
+                    if($_GET['sub'] === "Home" || $_GET['sub'] === "Newest" || $_GET['sub'] === "Most-Played") {
+                        include('./components/contentListGroups.php');
                     }else{
                         include('./components/contentList.php');
                     }
                 }else{
-                    include('./components/home.php');
+                    include('./components/contentListGroups.php');
                 }
             ?>
         </main>
