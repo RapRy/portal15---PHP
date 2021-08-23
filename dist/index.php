@@ -31,9 +31,18 @@
                 </div>
             </header> 
 
+            <?php
+                 // temporary
+                 if(isset($_GET['cat'])){
+                     if($_GET['cat'] !== "HTML5"){
+                         include('./components/comingsoon.php');
+                         return;
+                     }
+                 }
+            ?>
+
             <!-- submenu start -->
             <?php
-
                 $subcategories = getSubCategories($baseUrl);
         
                 $activeSub = str_replace("-", " ", $actives['subActive']);
@@ -44,6 +53,16 @@
 
             <?php
                 // include('./components/home.php');
+
+                if(isset($_GET['action'])){
+                    if($_GET['action'] === "play"){
+                        include('./components/playGame.php');
+                    }else{
+                        echo "else";
+                    }
+                    return;
+                }
+
                 if(isset($_GET['sub'])){
                     if($_GET['sub'] === "Home" || $_GET['sub'] === "Newest" || $_GET['sub'] === "Most-Played") {
                         include('./components/contentListGroups.php');
@@ -53,6 +72,7 @@
                 }else{
                     include('./components/contentListGroups.php');
                 }
+
             ?>
         </main>
     </div>

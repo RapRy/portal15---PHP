@@ -65,4 +65,23 @@
             return $data['data'];
         }
     }
+
+    function getContentDetails($baseUrl, $gid, $sid){
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($curl, CURLOPT_URL, "{$baseUrl}/game?sid={$sid}&gid={$gid}");
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+        $output = curl_exec($curl);
+
+        $data = json_decode($output, true);
+
+        curl_close($curl);
+
+        if($data['code'] === 200){
+            return $data['data'];
+        }
+    }
 ?>
