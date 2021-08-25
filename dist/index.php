@@ -16,7 +16,7 @@
     <div class="mx-auto block lg:mx-0 lg:flex lg:flex-row lg:flex-nowrap lg:gap-x-10">
         <?php include('./components/asideMenu.php'); ?>
 
-        <main class="py-5 px-4 lg:px-0 lg:pr-10">
+        <main class="w-full py-5 px-4 lg:px-0 lg:pr-10">
             <header>
                 <div class="w-14 h-14 inline-block relative z-0 lg:hidden">
                     <svg id="menuBurg" class="w-14 cursor-pointer inline-block fill-current text-textColor1 dark:text-neutralLight" xmlns="http://www.w3.org/2000/svg" viewBox="-5 -7 24 24" width="56" height="56" preserveAspectRatio="xMinYMin" class="icon__icon"><path d="M1 0h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0 8h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0-4h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2z"></path></svg>
