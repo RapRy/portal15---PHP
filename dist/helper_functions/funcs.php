@@ -1,4 +1,7 @@
 <?php
+    $baseUrl = "https://games.gamepix.com";
+    $sid = 1;
+
     $actives = [
         "catActive" => isset($_GET['cat']) ? $_GET['cat'] : "HTML5",
         "subActive" => isset($_GET['sub']) ? $_GET['sub'] : "Home"

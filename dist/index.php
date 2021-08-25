@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php require('./helper_functions/connection.php'); ?>
     <?php require('./helper_functions/funcs.php'); ?>
 <head>
     <meta charset="UTF-8">
